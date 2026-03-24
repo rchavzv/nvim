@@ -33,5 +33,4 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 
 -- Live Preview
 vim.keymap.set("n", "<leader>lp", ":LivePreview start<CR>", { desc = "Live Preview Start" })
-vim.keymap.set("n", "<leader>lt", ":LivePreview toggle<CR>", { desc = "Live Preview Toggle" })
 vim.keymap.set("n", "<leader>ls", ":LivePreview close<CR>", { desc = "Live Preview Stop" })
