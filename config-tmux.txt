@@ -58,8 +58,9 @@ set -g @plugin 'tmux-plugins/tmux-continuum' # automatically saves sessions for 
 
 # set -g @themepack 'powerline/default/cyan' # use this theme for tmux
 
-set -g @resurrect-capture-pane-contents 'on' # allow tmux-ressurect to capture pane contents
-set -g @continuum-restore 'on' # enable tmux-continuum functionality
+#se activa el restaurar ventanas y configuraciones con on y off
+set -g @resurrect-capture-pane-contents 'off' # allow tmux-ressurect to capture pane contents
+set -g @continuum-restore 'off' # enable tmux-continuum functionality
 
 # --- Configuración para logs en ~/.tmux_logs ---
 # Crear la carpeta si no existe
