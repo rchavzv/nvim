@@ -1,0 +1,94 @@
+1.-instalar tmux usando
+
+brew install tmux
+
+2.-crear archivo de configuracion
+
+touch ~/.tmux.conf
+
+3.-configurar en el archivo
+
+#Para que tmux use tipo de terminal compatible con 256 colores
+set -g default-terminal "screen-256color"
+
+#Cambia el prefijo definido de control + b a control + a
+set -g prefix C-a
+unbind C-b
+bind-key C-a send-prefix
+
+#Desactiva la tecla % para dividir ventanas y usa . de manera vertical
+unbind %
+bind . split-window -h
+
+#Desactiva la tecla "" para dividir ventanas y usa - de manera horizontal
+unbind '"'
+bind - split-window -v
+
+#Se crea la combinacion prefijo y r para recargar los ajustes de tmux
+unbind r
+bind r source-file ~/.tmux.conf
+
+#Se agregan los atajos de teclas para dimensionar los cuadros de tmux
+bind -r j resize-pane -D 5
+bind -r k resize-pane -U 5
+bind -r l resize-pane -R 5
+bind -r h resize-pane -L 5
+
+#Se agrega el atajo de teclas para maximizar los cuadros de tmux
+bind -r m resize-pane -Z
+
+#Se activa el raton para redimensionar los paneles de tmux
+set -g mouse on
+
+set-window-option -g mode-keys vi
+
+bind-key -T copy-mode-vi 'v' send -X begin-selection # start selecting text with "v"
+bind-key -T copy-mode-vi 'y' send -X copy-selection # copy text with "y"
+
+unbind -T copy-mode-vi MouseDragEnd1Pane # don't exit copy mode after dragging with mouse
+
+# tpm plugin
+set -g @plugin 'tmux-plugins/tpm'
+
+# list of tmux plugins
+set -g @plugin 'christoomey/vim-tmux-navigator' # for navigating panes and vim/nvim with Ctrl-hjkl
+# set -g @plugin 'jimeh/tmux-themepack' # to configure tmux theme
+set -g @plugin 'tmux-plugins/tmux-resurrect' # persist tmux sessions after computer restart
+set -g @plugin 'tmux-plugins/tmux-continuum' # automatically saves sessions for you every 15 minutes
+
+# set -g @themepack 'powerline/default/cyan' # use this theme for tmux
+
+set -g @resurrect-capture-pane-contents 'on' # allow tmux-ressurect to capture pane contents
+set -g @continuum-restore 'on' # enable tmux-continuum functionality
+
+# --- Configuración para logs en ~/.tmux_logs ---
+# Crear la carpeta si no existe
+run-shell "mkdir -p ~/.tmux_logs"
+
+# Archivo de log del servidor tmux
+set-option -g verbose-file ~/.tmux_logs/tmux-server.log
+
+# Esto evita que tmux genere logs automáticos en el home (~)
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm
+
+4.- clonar el manejador de plugins de tmux con
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+
+5.- instalar plugins con
+
+prefijo + shift I
+
+y actualizar la configuracion con 
+
+prefilo + r
+
+
+
+
+
+
+
